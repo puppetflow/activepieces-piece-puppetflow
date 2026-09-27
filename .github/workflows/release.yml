@@ -37,7 +37,7 @@ jobs:
         run: bash scripts/build.sh
       - name: Publish to npm
         if: env.NPM_TOKEN != ''
-        run: npm publish dist --access public --provenance
+        run: npm publish ./dist --access public --provenance
         env:
           NODE_AUTH_TOKEN: ${{ env.NPM_TOKEN }}
       - name: Skip npm publish

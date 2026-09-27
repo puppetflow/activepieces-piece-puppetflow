@@ -44,6 +44,6 @@
     "bundle": "node ../../../../dist/packages/cli/src/index.js pieces bundle",
     "lint": "eslint 'src/**/*.ts'",
     "build:bundle": "bash scripts/build.sh",
-    "prepublishOnly": "echo 'Publish the bundled artifact instead: npm run build:bundle && npm publish dist' && exit 1"
+    "prepublishOnly": "echo 'Publish the bundled artifact instead: npm run build:bundle && npm publish ./dist' && exit 1"
   }
 }
