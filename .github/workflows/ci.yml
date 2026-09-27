@@ -1,0 +1,35 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+env:
+  ACTIVEPIECES_DIR: ${{ github.workspace }}/../activepieces
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+      - name: Build bundle
+        run: bash scripts/build.sh
+      - name: Smoke test bundle
+        run: |
+          node -e "
+            const { puppetflow } = require('./dist/src/index.js');
+            const actions = Object.keys(puppetflow.actions());
+            if (actions.length === 0) throw new Error('no actions exported');
+            console.log(puppetflow.displayName, actions.join(', '));
+          "
+      - uses: actions/upload-artifact@v4
+        with:
+          name: piece-bundle
+          path: dist/*.tgz

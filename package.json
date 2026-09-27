@@ -1,0 +1,49 @@
+{
+  "name": "@puppetflow/piece-puppetflow",
+  "version": "0.1.0",
+  "description": "Activepieces piece for Puppetflow: trigger browser automation flows, follow runs, and retrieve results, screenshots, downloads, and recordings.",
+  "keywords": [
+    "activepieces",
+    "activepieces-piece",
+    "puppetflow",
+    "browser-automation",
+    "puppeteer",
+    "rpa",
+    "web-scraping"
+  ],
+  "license": "MIT",
+  "homepage": "https://puppetflow.com",
+  "author": {
+    "name": "Puppetflow",
+    "email": "hello@puppetflow.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/puppetflow/activepieces-piece-puppetflow.git"
+  },
+  "bugs": {
+    "url": "https://github.com/puppetflow/activepieces-piece-puppetflow/issues"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "type": "commonjs",
+  "main": "./dist/src/index.js",
+  "types": "./dist/src/index.d.ts",
+  "dependencies": {
+    "@activepieces/pieces-common": "workspace:*",
+    "@activepieces/pieces-framework": "workspace:*",
+    "@activepieces/core-piece-types": "workspace:*",
+    "@activepieces/core-utils": "workspace:*"
+  },
+  "devDependencies": {
+    "tslib": "2.6.2"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.lib.json && cp package.json dist/",
+    "bundle": "node ../../../../dist/packages/cli/src/index.js pieces bundle",
+    "lint": "eslint 'src/**/*.ts'",
+    "build:bundle": "bash scripts/build.sh",
+    "prepublishOnly": "echo 'Publish the bundled artifact instead: npm run build:bundle && npm publish dist' && exit 1"
+  }
+}

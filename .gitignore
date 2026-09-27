@@ -1,0 +1,5 @@
+node_modules/
+dist/
+.activepieces/
+*.tgz
+.DS_Store
